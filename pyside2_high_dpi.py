@@ -42,12 +42,13 @@ class MainWindow(QtWidgets.QMainWindow):
         layout.addWidget(label)
         w1 = self._add_button_using_addfile(w, size)
         w2 = self._add_button_using_pixmap(w, size)
+        w3 = self._add_button_using_svg(w, size)
         spacer = QtWidgets.QSpacerItem(40, 20,
                                    QtWidgets.QSizePolicy.Expanding,
                                    QtWidgets.QSizePolicy.Minimum)
         layout.addItem(spacer)
         self._layout.addWidget(w)
-        return [w, label, spacer] + w1 + w2
+        return [w, label, spacer] + w1 + w2 + w3
     
     def _add_button_using_addfile(self, parent, size=None):
         # Use separate images and Icon.addFile
@@ -74,6 +75,16 @@ class MainWindow(QtWidgets.QMainWindow):
             button.setIconSize(QtCore.QSize(*size))
         parent.layout().addWidget(button)
         return [button, icon, pixmap]
+        
+    def _add_button_using_svg(self, parent, size=None):
+        # Use a single high-res image, Pixmap and scaling
+        button = QtWidgets.QPushButton(self._central_widget)
+        button.setStyleSheet('image: url("./resources/zoom_in.svg")')
+        if size is None:
+            size = (24, 24)
+        button.setFixedSize(*size)
+        parent.layout().addWidget(button)
+        return [button]
 
 
 if __name__ == '__main__':

@@ -4,6 +4,8 @@
 I have been trying and failing to get high-dpi icons to work correctly in 
 Qt + PySide2.  The goal is to create and then fix this minimal example.
 
+Solution: use SVG images and stylesheets.
+
 
 ## Baseline
 
